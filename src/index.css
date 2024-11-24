@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Overall Container */
+body {
+  /* background: linear-gradient(to bottom, #fff8dc, #faf3e0); */
+  /* background-color: #fff8dc; */
+  background-color: #f7e6d0;
+
+  font-family: "Times New Roman", serif;
+}
