@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { gsap } from "gsap";
+import LeafComponents from "./components/leaf";
 
 const App = () => {
   const pages = [
@@ -62,14 +63,24 @@ const App = () => {
       <img src="/gita.jpg" alt="frontPage   " />
     </div>
   );
+  const pageFlipSound = useRef(new Audio("/pageTurnSound.mp3")); // Add your sound file to public folder
+
+  const handleStartPageFlip = () => {
+    // Play the sound immediately when a page turn starts
+    pageFlipSound.current.currentTime = 0;
+    pageFlipSound.current.play();
+  };
 
   return (
-    <div className="container min-h-screen bg-gradient-to-b from-[#f7e6d0] to-[#f9d9b4]">
+    <div className="container min-h-screen min-w-full bg-gradient-to-b from-[#f7e6d0] to-[#f9d9b4]">
       {}
+      <div className="absolute inset-0 z-10">
+        <LeafComponents />
+      </div>
 
       <div
         ref={contBoxRef}
-        className="flipbook-container relative z-10 flex justify-center items-center min-h-screen py-5"
+        className="flipbook-container relative z-10 flex  justify-end pr-8 items-center min-h-screen py-5"
       >
         <HTMLFlipBook
           width={400}
@@ -85,6 +96,10 @@ const App = () => {
           className="demo-book"
           style={{ gap: "50px" }}
           flippingTime={2000}
+          // onChangeState={handleStartPageFlip} // Use only this event handler
+          // onStartPageFlip={handleStartPageFlip}
+          onFlip={handleStartPageFlip}
+          // onInit={handleStartPageFlip}
           drawShadow={true}
         >
           {/* cover pages */}
@@ -104,11 +119,11 @@ const App = () => {
             >
               {/* Header with enhanced design */}
 
-              <div className="header text-center mb-6">
+              <div className="header text-center  mb-6">
                 <div className="absolute inset-4 border-[3px] border-[#d4af37]" />
                 <div className="absolute inset-6 border-[1px] border-[#d4af37]" />
 
-                <div className="ornamental-border flex items-center justify-center gap-2 mb-4">
+                <div className="ornamental-border flex items-center justify-center gap-2 mb-2">
                   <img src="/left3.png" className="w-28  h-14 " alt="" />
                   <img
                     src="om2.png"
@@ -121,16 +136,16 @@ const App = () => {
                     alt=""
                   />
                 </div>
-                <h1 className="text-3xl font-bold text-[#8B4513] mb-2 font-sanskrit drop-shadow-lg">
+                <h1 className="text-xl font-bold text-[#8B4513] mb-2 font-sanskrit drop-shadow-lg">
                   {page.chapter}
                 </h1>
-                <h2 className="text-xl font-medium text-[#8B4513] font-sanskrit">
+                <h2 className="text-base font-semibold text-[#8B4513] font-sanskrit">
                   {page.verse}
                 </h2>
               </div>
 
               {/* Content with enhanced styling */}
-              <div className="content flex flex-1  m-auto w-80 h-80 rounded-lg p-6 ">
+              <div className="content flex  bg-red-600 text-center m-auto w-80 h-80 rounded-lg p-6 ">
                 {/* Sholk */}
                 {page.sanskrit}
               </div>
