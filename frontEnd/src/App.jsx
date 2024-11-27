@@ -42,6 +42,56 @@ const App = () => {
         "By knowing this knowledge, you will attain oneness with Me. Even at creation, you won’t be born, and at dissolution, you will not suffer.",
     },
   ];
+  const trans = [
+    {
+      authorName: "Swami Sivananda",
+      author_id: 16,
+      description:
+        "Here are heroes, mighty archers, equal in battle to Bhima and Arjuna, Yuyudhana (Satyaki), Virata, and Drupada—all mighty warriors.",
+      id: 26,
+      lang: "english",
+      language_id: 1,
+      verseNumber: 4,
+      verse_id: 4,
+    },
+    {
+      authorName: "Swami Sivananda",
+      author_id: 16,
+      description:
+        "Dhrishtaketu, Chekitana, the valiant king of Kasi, Purujit, Kuntibhoja, and Saibya—the best of men.",
+      id: 33,
+      lang: "english",
+      language_id: 1,
+      verseNumber: 5,
+      verse_id: 5,
+    },
+    {
+      authorName: "Swami Sivananda",
+      author_id: 16,
+      description:
+        'The strong Yudhamanyu and the brave Uttamaujas, the son of Subhadra (Abhimanyu, the son of Subhadra and Arjuna), and the sons of Draupadi, all of them great charioteers (great heroes)."',
+      id: 40,
+      lang: "english",
+      language_id: 1,
+      verseNumber: 6,
+      verse_id: 6,
+    },
+  ];
+
+  // Combine the arrays alternately
+  const linkedListArray = [];
+  const maxLength = Math.max(pages.length, trans.length);
+
+  for (let i = 0; i < maxLength; i++) {
+    if (i < pages.length) {
+      linkedListArray.push(pages[i]);
+    }
+    if (i < trans.length) {
+      linkedListArray.push(trans[i]);
+    }
+  }
+
+  console.log(linkedListArray);
   const contBoxRef = useRef(null);
   useEffect(() => {
     gsap.fromTo(
@@ -108,7 +158,7 @@ const App = () => {
           </div>
 
           {/* pages*/}
-          {pages.map((page, index) => (
+          {linkedListArray.map((page, index) => (
             <div
               key={index}
               className="page-content bg-[#fff9f0] rounded-lg p-6"
@@ -137,17 +187,17 @@ const App = () => {
                   />
                 </div>
                 <h1 className="text-xl font-bold text-[#8B4513] mb-2 font-sanskrit drop-shadow-lg">
-                  {page.chapter}
+                  {page.chapter || page.authorName}
                 </h1>
                 <h2 className="text-base font-semibold text-[#8B4513] font-sanskrit">
-                  {page.verse}
+                  {page.verse || page.verseNumber}
                 </h2>
               </div>
 
               {/* Content with enhanced styling */}
-              <div className="content flex  bg-red-600 text-center m-auto w-80 h-80 rounded-lg p-6 ">
+              <div className="content flex   text-center m-auto w-80 h-80 rounded-lg p-6 ">
                 {/* Sholk */}
-                {page.sanskrit}
+                {page.sanskrit || page.description}
               </div>
 
               {/* Enhanced Footer with decorative page number */}
