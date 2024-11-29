@@ -65,17 +65,7 @@ const App = () => {
       verseNumber: 5,
       verse_id: 5,
     },
-    {
-      authorName: "Swami Sivananda",
-      author_id: 16,
-      description:
-        'The strong Yudhamanyu and the brave Uttamaujas, the son of Subhadra (Abhimanyu, the son of Subhadra and Arjuna), and the sons of Draupadi, all of them great charioteers (great heroes)."',
-      id: 40,
-      lang: "english",
-      language_id: 1,
-      verseNumber: 6,
-      verse_id: 6,
-    },
+
   ];
 
   // Combine the arrays alternately
